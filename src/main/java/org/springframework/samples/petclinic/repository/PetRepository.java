@@ -20,13 +20,15 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+import org.springframework.samples.petclinic.model.Owner;
 import org.springframework.samples.petclinic.model.Pet;
 import org.springframework.samples.petclinic.model.PetType;
+import org.springframework.samples.petclinic.model.Vet;
 import org.springframework.transaction.annotation.Transactional;
 
-public interface PetRepository extends JpaRepository<Pet, Integer> {
-
-    
-    
+public interface PetRepository extends JpaRepository<Pet, Integer> {	
+	//Obtener las mascotas nacidas en 2010 ordenadas por fecha de nascimiento ascendente
+	@Query("select p from Pet p where p.birthDate =:birthDate order by birthDate asc")	
+	List<Pet> findByOrderByBirthDate(@Param("birthDate") Date birthDate);	
 }
-

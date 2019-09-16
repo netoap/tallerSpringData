@@ -22,7 +22,10 @@ import org.springframework.samples.petclinic.model.Visit;
 
 public interface VisitRepository extends JpaRepository<Visit, Integer> {
 
+	// Obtener todas las visitas para una mascota
     List<Visit> findByPetId(Integer petId);
-   
-   
+    
+    // Obtener las 4 visitas más recientes de todo el sistema.    
+    List<Visit> findTop4ByOrderByDateDesc();
+    
 }
