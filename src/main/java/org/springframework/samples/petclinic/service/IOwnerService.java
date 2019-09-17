@@ -10,5 +10,5 @@ public interface IOwnerService {
 	Owner findById(Integer id);
 	List<Owner> findByFirstNameContainingOrLastNameContaining(String firstname, String lastname);
 	List<Owner> findByOrderByLastName();
-
+	
 }

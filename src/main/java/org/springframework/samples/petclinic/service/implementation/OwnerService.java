@@ -33,4 +33,5 @@ public class OwnerService implements IOwnerService {
 	public List<Owner> findByOrderByLastName() {		
 		return ownerRepo.findByOrderByLastName();
 	}
+	
 }

@@ -3,6 +3,7 @@ package org.springframework.samples.petclinic.model;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
@@ -21,10 +22,12 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class Bill extends BaseEntity {
 	
 	@Digits(integer=10, fraction=0)
+	@Column(name = "id_number")
 	private long idNumber;
 	
 	@Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy/MM/dd")
+	@Column(name = "payment_date")
 	private Date paymentDate;
 	
 	@Digits(integer=5, fraction=2)
