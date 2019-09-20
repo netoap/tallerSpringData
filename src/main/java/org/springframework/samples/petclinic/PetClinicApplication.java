@@ -20,6 +20,7 @@ package org.springframework.samples.petclinic;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,16 +29,16 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.samples.petclinic.model.Bill;
+import org.springframework.samples.petclinic.model.Ofertas;
 import org.springframework.samples.petclinic.model.Pet;
 import org.springframework.samples.petclinic.model.Visit;
 import org.springframework.samples.petclinic.repository.OwnerRepository;
 import org.springframework.samples.petclinic.repository.SpecialityRepository;
 import org.springframework.samples.petclinic.repository.VetRepository;
+import org.springframework.samples.petclinic.service.IOfertasService;
 import org.springframework.samples.petclinic.service.IVisitService;
 import org.springframework.samples.petclinic.service.implementation.OwnerService;
 import org.springframework.samples.petclinic.service.implementation.PetService;
-import org.springframework.samples.petclinic.service.implementation.VisitService;
 
 
 /**
@@ -58,6 +59,8 @@ public class PetClinicApplication {
 	PetService petService;
 	@Autowired
 	IVisitService visitService;
+	@Autowired
+	IOfertasService ofertasService;
 	
 	private static final Logger log = LoggerFactory.getLogger(PetClinicApplication.class);
 
@@ -181,6 +184,41 @@ public class PetClinicApplication {
 				log.info("findTop4ByVisit: " + v);
 			}
 			
+			/**************************** ofertas Service*******************/
+			// INSERT- CREATE
+			Ofertas oferta1 = new Ofertas();
+			oferta1.setTitle("oferta1");
+			oferta1.setDescription("Desc1");
+			oferta1.setDiscount(10D);
+			Date dateDeExpiracao = Date.from(LocalDate.of(2019,8,01).atStartOfDay(ZoneId.systemDefault()).toInstant());
+			
+			oferta1.setExpireDate(dateDeExpiracao);	
+			
+			Ofertas oferta2 = new Ofertas();
+			oferta2.setTitle("oferta2");
+			oferta2.setDescription("Desc2");
+			oferta2.setDiscount(10D);
+			Date dateDeExpiracao1 = Date.from(LocalDate.of(2020,11,01).atStartOfDay(ZoneId.systemDefault()).toInstant());
+			oferta2.setExpireDate(dateDeExpiracao1);
+			
+//			ofertasService.save(oferta1);
+//			ofertasService.save(oferta2);
+//			SELECT ALL
+			for (Ofertas oferta : ofertasService.getAllOfertas()) {
+				System.out.println(oferta);
+			}
+			//SELECT registos que nao caducaram
+			//Date todayDate = Date.from(LocalDate.of(2019,8,20).atStartOfDay(ZoneId.systemDefault()).toInstant());
+			List<Ofertas> ofertasX = ofertasService.findByExpireDate();
+			
+			for (Ofertas oferta : ofertasX) {
+				System.out.println("Nao Caducadas: "+oferta);
+			}
+			
+			// DELETE oferta (checked)
+			//ofertasService.deleteOfertas(1);
+			
+			// UPDATE no POSTMAN
 		};
 	}   
 }

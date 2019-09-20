@@ -69,3 +69,10 @@ CREATE TABLE IF NOT EXISTS facturas (
   paymentDate DATE,
  money DOUBLE(5,2)
 ) engine=InnoDB;
+CREATE TABLE IF NOT EXISTS ofertas (
+  id INT(4) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,  
+  title varchar(255),
+  description varchar(255),
+  discount DOUBLE(5,2),
+  expire_date DATE
+) engine=InnoDB;
