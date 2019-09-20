@@ -29,6 +29,15 @@ public class Ofertas extends BaseEntity{
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(pattern = "yyyy/MM/dd")
 	private Date expireDate;
+	
+	
+	public Ofertas(String title, String description, Double discount, Date expireDate) {
+		super();
+		Title = title;
+		this.description = description;
+		Discount = discount;
+		this.expireDate = expireDate;
+	}
 
 	public String getTitle() {
 		return Title;

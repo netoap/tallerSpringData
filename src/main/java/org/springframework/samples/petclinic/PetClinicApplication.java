@@ -186,11 +186,13 @@ public class PetClinicApplication {
 			
 			/**************************** ofertas Service*******************/
 			// INSERT- CREATE
+			
 			Ofertas oferta1 = new Ofertas();
 			oferta1.setTitle("oferta1");
 			oferta1.setDescription("Desc1");
 			oferta1.setDiscount(10D);
 			Date dateDeExpiracao = Date.from(LocalDate.of(2019,8,01).atStartOfDay(ZoneId.systemDefault()).toInstant());
+			
 			
 			oferta1.setExpireDate(dateDeExpiracao);	
 			
